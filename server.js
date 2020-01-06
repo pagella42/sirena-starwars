@@ -20,11 +20,10 @@ app.use(function (req, res, next) {
 
 
 
-app.get('/movies', function(req, res){
+app.get('/peliculas', function(req, res){
 
   
   request('https://swapi.co/api/films', function(err, response){
-      
     if(response.statusCode == 200){
       res.send(JSON.parse(response.body).results)
     }
@@ -35,7 +34,7 @@ app.get('/movies', function(req, res){
 })
 
 
-app.get('/characters', function(req, res){
+app.get('/personajes', function(req, res){
 
   
   request('https://swapi.co/api/people', function(err, response){

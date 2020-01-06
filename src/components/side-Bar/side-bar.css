@@ -6,13 +6,13 @@
     }
 #side-inner{
     display: grid;
-    grid-template-rows: 1fr 1.5fr;
+    grid-template-rows: 1fr 1fr;
     width: 100%;
     align-items: center;
     justify-items: center;
     height: 160px;
     margin-top: 65px;
-    
+    grid-row-gap: 1px;
 
 }
 .icon{
@@ -26,10 +26,23 @@
     display: grid;
     align-items: center;
     justify-items: center;
+ 
+    cursor: pointer;
+
+}
+.icon-cont-up{
     border-top: 1px solid #3498db;
+}
+.icon-cont-down{
     border-bottom: 1px solid #3498db;
+
+}
+.icon-clicked{
+   
+    background-color: #3498db;
 
 }
 .icon-cont:hover{
     background-color: #3498db;
+    
 }

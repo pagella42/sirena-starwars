@@ -1,24 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './list.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import Top from './top/Top';
+import Results from './results/Results';
 
-function List (){
- const [page, setPage] = useState("Personajes")
+function List(props) {
 
-    return (
-       <div id="list-container">
-          <div id="list-top">
-             <div id="top-inner">
-                 <span>{page}</span>
-             <input id="search" placeholder="Buscar"/>
-             </div>
-            
-          </div>
-          <div id="list-results"></div>
-       </div>
-        
-    )
+   const [search, setSearch] = useState("")
+   const [list, setList] = useState([])
+
+   let searchChange = (event) => {
+      setSearch(event.target.value)
+   }
+
+
+
+
+
+
+   useEffect(() => {
+      if (props.data && props.page === "peliculas") {
+         let newList = []
+         props.data.films.data.forEach(d => d.title.includes(search)? newList.push(d.title): null)
+         setList(newList)
+      }
+      else if (props.data && props.page === "personajes") {
+         let newList = []
+         props.data.people.data.forEach(d =>d.name.includes(search)?  newList.push(d.name): null)
+         setList(newList)
+      }
+   }, [props.data, props.page, search])
+
+
+   return (
+      <div id="list-container">
+         <Top page={props.page} search={search} setSearch={setSearch} searchChange={searchChange} />
+
+         <Results list={list} />
+      </div>
+
+   )
 }
 
 
